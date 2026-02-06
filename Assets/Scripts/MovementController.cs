@@ -17,8 +17,7 @@ public class MovementController : MonoBehaviour
     private Vector3 _move;
     private float _verticalVelocity;
     private bool _isGrounded;
-    private float _mouseX;
-    private float _mouseY;
+    private Vector2 _mouse;
 
     private void Awake()
     {
@@ -48,13 +47,13 @@ public class MovementController : MonoBehaviour
         // Get rotation inputs
 
         // Calculate body rotation
-        Vector3 bodyRotation = new Vector3(0, _mouseX, 0) * (_rotateSpeed * Time.deltaTime);
+        Vector3 bodyRotation = new Vector3(0, _mouse.x, 0) * (_rotateSpeed * Time.deltaTime);
 
         // Apply body rotation
         transform.Rotate(bodyRotation);
 
         // Calculate camera rotation
-        Vector3 cameraRotation = new Vector3(-_mouseY, 0, 0) * (_rotateSpeed * Time.deltaTime);
+        Vector3 cameraRotation = new Vector3(-_mouse.y, 0, 0) * (_rotateSpeed * Time.deltaTime);
         cameraRotation = _cameraTransform.rotation.eulerAngles + cameraRotation;
         cameraRotation.x = ClampAngle(cameraRotation.x, _xMinAngle, _xMaxAngle);
 
@@ -87,7 +86,6 @@ public class MovementController : MonoBehaviour
     private void OnLook(InputValue input)
     {
         Vector2 rotation = input.Get<Vector2>();
-        _mouseX = rotation.x;
-        _mouseY = rotation.y;
+        _mouse = rotation;
     }
 }
