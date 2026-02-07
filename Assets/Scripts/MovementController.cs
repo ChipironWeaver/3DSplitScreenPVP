@@ -23,7 +23,6 @@ public class MovementController : MonoBehaviour
     private void Awake()
     {
         _characterController = GetComponent<CharacterController>();
-        Debug.Log(Mathf.Clamp(-70, -60, 60));
     }
 
     private void Update()
@@ -58,7 +57,9 @@ public class MovementController : MonoBehaviour
         Vector3 cameraRotation = new Vector3(-_mouse.y, 0, 0) * (_rotateSpeed * Time.deltaTime);
         cameraRotation = _cameraTransform.rotation.eulerAngles + cameraRotation;
         cameraRotation.x = ClampAngle(cameraRotation.x, _xMinAngle, _xMaxAngle);
-        print(cameraRotation.x);
+        
+        if(cameraRotation.z != 0) cameraRotation.z = 0;
+        
         // Apply camera rotation
         _cameraTransform.eulerAngles = cameraRotation;
     }
@@ -69,6 +70,7 @@ public class MovementController : MonoBehaviour
         if (angle > 180f) return Mathf.Max(angle, 360 + min);
         return Mathf.Min(angle, max);
     }
+
 
     private void OnMove(InputValue input)
     {

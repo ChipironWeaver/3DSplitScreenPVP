@@ -797,7 +797,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e60a11bdfc8b77408abb74fb7f4b1a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LauncherController
-  _ammoPower: 5
+  _ammoPower: 500
   _ammoPrefab: {fileID: 3089808505691805788, guid: 78a062d2db3a9c946976680a7669cb67, type: 3}
   _spawnPoint: {fileID: 922045945}
 --- !u!1 &1386335956
