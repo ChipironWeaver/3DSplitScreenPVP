@@ -12,7 +12,5 @@ public class LauncherController : MonoBehaviour
         GameObject instantiate = Instantiate(_ammoPrefab, _spawnPoint.position, Quaternion.identity);
         Rigidbody rb = instantiate.GetComponent<Rigidbody>();
         rb.AddForce(_spawnPoint.forward * _ammoPower);
-        Debug.Log(_spawnPoint.forward);
-        Debug.Log(_spawnPoint.forward * _ammoPower);
     }
 }

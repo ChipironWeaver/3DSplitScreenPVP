@@ -206,7 +206,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.59, z: 0}
+  m_LocalPosition: {x: 0, y: 0.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -712,7 +712,7 @@ MonoBehaviour:
   _cameraTransform: {fileID: 330585546}
   _moveSpeed: 15
   _rotateSpeed: 100
-  _xMinAngle: -60
+  _xMinAngle: -40
   _xMaxAngle: 60
   _jumpForce: 4
   _gravityForce: -20

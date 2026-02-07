@@ -54,11 +54,9 @@ public class MovementController : MonoBehaviour
         transform.Rotate(bodyRotation);
 
         // Calculate camera rotation
-        Vector3 cameraRotation = new Vector3(-_mouse.y, 0, 0) * (_rotateSpeed * Time.deltaTime);
-        cameraRotation = _cameraTransform.rotation.eulerAngles + cameraRotation;
+        Vector3 cameraRotation = new Vector3(Mathf.Clamp(-_mouse.y,-30f,30f), 0, 0) * (_rotateSpeed * Time.deltaTime);
+        cameraRotation = _cameraTransform.eulerAngles + cameraRotation;
         cameraRotation.x = ClampAngle(cameraRotation.x, _xMinAngle, _xMaxAngle);
-        
-        if(cameraRotation.z != 0) cameraRotation.z = 0;
         
         // Apply camera rotation
         _cameraTransform.eulerAngles = cameraRotation;
