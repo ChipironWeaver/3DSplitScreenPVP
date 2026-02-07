@@ -14,10 +14,10 @@ public class AmmoController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        TargetController target = other.GetComponent<TargetController>();
-        if (target != null) 
+        HealthController health = other.GetComponent<HealthController>();
+        if (health != null) 
         {
-            target.TakeDamage(1);
+            health.TakeDamage(1);
             Destroy(gameObject);
         }
     }

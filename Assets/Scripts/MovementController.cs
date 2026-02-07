@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -22,6 +23,7 @@ public class MovementController : MonoBehaviour
     private void Awake()
     {
         _characterController = GetComponent<CharacterController>();
+        Debug.Log(Mathf.Clamp(-70, -60, 60));
     }
 
     private void Update()
@@ -56,16 +58,16 @@ public class MovementController : MonoBehaviour
         Vector3 cameraRotation = new Vector3(-_mouse.y, 0, 0) * (_rotateSpeed * Time.deltaTime);
         cameraRotation = _cameraTransform.rotation.eulerAngles + cameraRotation;
         cameraRotation.x = ClampAngle(cameraRotation.x, _xMinAngle, _xMaxAngle);
-
+        print(cameraRotation.x);
         // Apply camera rotation
         _cameraTransform.eulerAngles = cameraRotation;
     }
 
-    private float ClampAngle(float angle, float from, float to)
+    private float ClampAngle(float angle, float min, float max)
     {
         if (angle < 0f) angle = 360 + angle;
-        if (angle > 180f) return Mathf.Max(angle, 360 + from);
-        return Mathf.Min(angle, to);
+        if (angle > 180f) return Mathf.Max(angle, 360 + min);
+        return Mathf.Min(angle, max);
     }
 
     private void OnMove(InputValue input)

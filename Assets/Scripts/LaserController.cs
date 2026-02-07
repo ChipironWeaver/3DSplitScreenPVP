@@ -24,8 +24,8 @@ public class LaserController : MonoBehaviour
 
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
-                TargetController target = hit.transform.GetComponent<TargetController>();
-                if (target != null) target.TakeDamage(1);
+                HealthController health = hit.transform.GetComponent<HealthController>();
+                if (health != null) health.TakeDamage(1);
             }
         }
     }
