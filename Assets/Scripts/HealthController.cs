@@ -5,6 +5,8 @@ public class HealthController : MonoBehaviour
 {
     [SerializeField] private int _currentHealth;
     [SerializeField] private int _maxHealth;
+    [SerializeField] private float _invicibilityTime;
+    [SerializeField] private bool  _invicible;
 
 
     public void Start()
@@ -14,10 +16,15 @@ public class HealthController : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        _currentHealth -= damage;
-        if (_currentHealth <= 0)
+        if (!_invicible)
         {
-            Death();
+            _currentHealth -= damage;
+            if (_currentHealth <= 0)
+            {
+                Death();
+            }
+            _invicible = true;
+            Invoke(nameof(RemoveInvincibility), _invicibilityTime);
         }
     }
 
@@ -33,5 +40,10 @@ public class HealthController : MonoBehaviour
     public void Death()
     {
         Debug.Log("Death");
+    }
+
+    private void RemoveInvincibility()
+    {
+        _invicible = false;
     }
 }
