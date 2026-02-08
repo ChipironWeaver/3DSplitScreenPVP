@@ -80,6 +80,7 @@ public class HealthController : MonoBehaviour
         Heart.transform.SetParent(_group.transform);
         Heart.name = "Heart" + (_heartGroup.Count + 1) ;
         Heart.AddComponent<Image>().sprite = _heartSprite;
+        Heart.GetComponent<RectTransform>().localScale = Vector3.one;
         return Heart;
     }
 }
