@@ -337,8 +337,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TargetController
   _currentHealth: 5
   _maxHealth: 5
-  _invicibilityTime: 0.5
+  _invicibilityTime: 0.25
   _invicible: 0
+  _heartSprite: {fileID: 0}
+  _group: {fileID: 0}
 --- !u!114 &1596306066317849201
 MonoBehaviour:
   m_ObjectHideFlags: 0
