@@ -719,8 +719,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6451473160307626587, guid: d6e0dc6ad20c26e4fb86aec1f88c996b, type: 3}
       propertyPath: m_Materials.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6451473160307626587, guid: d6e0dc6ad20c26e4fb86aec1f88c996b, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9d718b38b2a24834c967ff4773279529, type: 2}
     - target: {fileID: 6451473160307626587, guid: d6e0dc6ad20c26e4fb86aec1f88c996b, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
@@ -1053,11 +1057,11 @@ PrefabInstance:
       objectReference: {fileID: 1235050377, guid: a0abd3b5dba304e49ab3aeeb1df606dd, type: 3}
     - target: {fileID: 4387439467326549196, guid: d6e0dc6ad20c26e4fb86aec1f88c996b, type: 3}
       propertyPath: m_DefaultActionMap
-      value: 1439b980-9d29-417a-8656-bce206e2fe9a
+      value: Player2
       objectReference: {fileID: 0}
     - target: {fileID: 4387439467326549196, guid: d6e0dc6ad20c26e4fb86aec1f88c996b, type: 3}
       propertyPath: m_DefaultControlScheme
-      value: Gamepad
+      value: Keyboard&Mouse
       objectReference: {fileID: 0}
     - target: {fileID: 4980025419570383300, guid: d6e0dc6ad20c26e4fb86aec1f88c996b, type: 3}
       propertyPath: m_Name
@@ -1117,8 +1121,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6451473160307626587, guid: d6e0dc6ad20c26e4fb86aec1f88c996b, type: 3}
       propertyPath: m_Materials.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6451473160307626587, guid: d6e0dc6ad20c26e4fb86aec1f88c996b, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a20d1daca203404489dffef1cc643c36, type: 2}
     - target: {fileID: 6451473160307626587, guid: d6e0dc6ad20c26e4fb86aec1f88c996b, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
