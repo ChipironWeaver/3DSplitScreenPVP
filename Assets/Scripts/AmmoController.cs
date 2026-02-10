@@ -18,7 +18,7 @@ public class AmmoController : MonoBehaviour
         if (health != null) 
         {
             health.TakeDamage(1);
-            Destroy(gameObject);
         }
+        Destroy(gameObject);
     }
 }
