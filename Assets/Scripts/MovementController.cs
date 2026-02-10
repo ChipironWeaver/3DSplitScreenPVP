@@ -13,6 +13,7 @@ public class MovementController : MonoBehaviour
     [SerializeField] private float _xMaxAngle = 60f;
     [SerializeField] private float _jumpForce = 50;
     [SerializeField] private float _gravityForce = -9.81f;
+    [SerializeField] public bool isActive = true;
 
     private CharacterController _characterController;
     private Vector3 _move;
@@ -27,39 +28,45 @@ public class MovementController : MonoBehaviour
 
     private void Update()
     {
-        // Horizontal movement
-        Vector3 moveDirection = transform.TransformDirection(_move);
-        moveDirection *= _moveSpeed;
-
-        // Check grounded
-        _isGrounded = _characterController.isGrounded;
-        if (_isGrounded && _verticalVelocity < 0)
+        if (isActive)
         {
-            _verticalVelocity = -2f;
+
+
+            // Horizontal movement
+            Vector3 moveDirection = transform.TransformDirection(_move);
+            moveDirection *= _moveSpeed;
+
+            // Check grounded
+            _isGrounded = _characterController.isGrounded;
+            if (_isGrounded && _verticalVelocity < 0)
+            {
+                _verticalVelocity = -2f;
+            }
+
+            // Gravity
+            _verticalVelocity += _gravityForce * Time.deltaTime;
+            moveDirection.y = _verticalVelocity;
+
+            // Apply movement and gravity
+            _characterController.Move(moveDirection * Time.deltaTime);
+
+            // Get rotation inputs
+
+            // Calculate body rotation
+            Vector3 bodyRotation = new Vector3(0, _mouse.x, 0) * (_rotateSpeed * Time.deltaTime);
+
+            // Apply body rotation
+            transform.Rotate(bodyRotation);
+
+            // Calculate camera rotation
+            Vector3 cameraRotation =
+                new Vector3(Mathf.Clamp(-_mouse.y, -30f, 30f), 0, 0) * (_rotateSpeed * Time.deltaTime);
+            cameraRotation = _cameraTransform.eulerAngles + cameraRotation;
+            cameraRotation.x = ClampAngle(cameraRotation.x, _xMinAngle, _xMaxAngle);
+
+            // Apply camera rotation
+            _cameraTransform.eulerAngles = cameraRotation;
         }
-
-        // Gravity
-        _verticalVelocity += _gravityForce * Time.deltaTime;
-        moveDirection.y = _verticalVelocity;
-
-        // Apply movement and gravity
-        _characterController.Move(moveDirection * Time.deltaTime);
-
-        // Get rotation inputs
-
-        // Calculate body rotation
-        Vector3 bodyRotation = new Vector3(0, _mouse.x, 0) * (_rotateSpeed * Time.deltaTime);
-
-        // Apply body rotation
-        transform.Rotate(bodyRotation);
-
-        // Calculate camera rotation
-        Vector3 cameraRotation = new Vector3(Mathf.Clamp(-_mouse.y,-30f,30f), 0, 0) * (_rotateSpeed * Time.deltaTime);
-        cameraRotation = _cameraTransform.eulerAngles + cameraRotation;
-        cameraRotation.x = ClampAngle(cameraRotation.x, _xMinAngle, _xMaxAngle);
-        
-        // Apply camera rotation
-        _cameraTransform.eulerAngles = cameraRotation;
     }
 
     private float ClampAngle(float angle, float min, float max)

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Image = UnityEngine.UI.Image;
 
 public class HealthController : MonoBehaviour
@@ -15,14 +16,30 @@ public class HealthController : MonoBehaviour
     [Header("Render Settings")]
     [SerializeField] private Sprite _heartSprite;
     [SerializeField] private GameObject _group;
+    [Header("Respawn Settings")]
+    [SerializeField] public bool canRespawn;
+    [SerializeField] public float respawnTime;
+    [SerializeField] public Transform respawnPoint;
+    [Header("UX Settings")]
+    [SerializeField] private AudioClip _hurtSound;
+    [SerializeField] private List<AudioClip> _deathSound;
+    [SerializeField] private List<GameObject> _deathParticles;
+        
     
     private List<GameObject> _heartGroup = new List<GameObject>();
+    private Transform _transform;
+    private MovementController _movementController;
+    private CharacterController _characterController;
 
 
     public void Start()
     {
         _maxHealth = _currentHealth;
-        RenderHealth();
+        RenderHealth(); 
+        _transform = GetComponent<Transform>();
+        _movementController = GetComponent<MovementController>();
+        _characterController = GetComponent<CharacterController>();
+        Respawn();
     }
 
     public void TakeDamage(int damage)
@@ -36,6 +53,7 @@ public class HealthController : MonoBehaviour
             }
             _invicible = true;
             Invoke(nameof(RemoveInvincibility), _invicibilityTime);
+            AudioSource.PlayClipAtPoint(_hurtSound, Vector3.zero);
         }
         RenderHealth();
     }
@@ -52,7 +70,28 @@ public class HealthController : MonoBehaviour
 
     public void Death()
     {
-        Debug.Log("Death");
+        _movementController.isActive =  true;
+        if (_deathSound != null)
+        {
+            foreach (AudioClip clip in _deathSound)
+            {
+                AudioSource.PlayClipAtPoint(clip, Vector3.zero);
+            }
+        }
+
+        if (_deathParticles != null)
+        {
+            foreach (GameObject particle in _deathParticles)
+            {
+                Instantiate(particle,_transform.position,Quaternion.identity);
+            }
+            
+        }
+        if (canRespawn)
+        {
+            Invoke(nameof(Respawn), respawnTime);
+            
+        }
     }
 
     private void RemoveInvincibility()
@@ -82,5 +121,17 @@ public class HealthController : MonoBehaviour
         Heart.AddComponent<Image>().sprite = _heartSprite;
         Heart.GetComponent<RectTransform>().localScale = Vector3.one;
         return Heart;
+    }
+
+    public void Respawn()
+    {
+        if (respawnPoint != null)
+        {
+            _characterController.enabled = false;
+            _transform.position = respawnPoint.position;
+            _characterController.enabled = true;
+            Heal(_maxHealth);
+            _movementController.isActive =  true;
+        }
     }
 }

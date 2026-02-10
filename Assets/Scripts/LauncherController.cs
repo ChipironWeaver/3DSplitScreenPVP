@@ -7,6 +7,9 @@ public class LauncherController : MonoBehaviour
     [SerializeField] private GameObject _ammoPrefab;
     [SerializeField] private Transform _spawnPoint;
     [SerializeField] private float _firingCooldown;
+    [Header("UX Settings")]
+    [SerializeField] private AudioClip _firingSound;
+    [SerializeField] private AudioClip _reloadSound;
     
     private bool _canFire = true;
 
@@ -19,6 +22,10 @@ public class LauncherController : MonoBehaviour
             rb.AddForce(_spawnPoint.forward * _ammoPower);
             _canFire = false;
             Invoke(nameof(ResetFire), _firingCooldown);
+            if (_firingSound != null)
+            {
+                AudioSource.PlayClipAtPoint(_firingSound, Vector3.zero);
+            }
         }
         
     }
