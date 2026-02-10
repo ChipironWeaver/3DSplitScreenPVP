@@ -10,6 +10,7 @@ public class LauncherController : MonoBehaviour
     [Header("UX Settings")]
     [SerializeField] private AudioClip _firingSound;
     [SerializeField] private AudioClip _reloadSound;
+    [SerializeField] private GameObject _shootParticle;
     
     private bool _canFire = true;
 
@@ -25,6 +26,11 @@ public class LauncherController : MonoBehaviour
             if (_firingSound != null)
             {
                 AudioSource.PlayClipAtPoint(_firingSound, Vector3.zero);
+            }
+
+            if (_shootParticle != null)
+            {
+                Instantiate(_shootParticle, _spawnPoint.position, Quaternion.identity);
             }
         }
         

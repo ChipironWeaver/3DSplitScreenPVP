@@ -374,6 +374,7 @@ MonoBehaviour:
   _firingCooldown: 0.1
   _firingSound: {fileID: 8300000, guid: 59b5a20fe231a8342aa6bbedc832b37b, type: 3}
   _reloadSound: {fileID: 0}
+  _shootParticle: {fileID: 8791802859087666345, guid: ae07f2a45f14a82428409cfe410e6002, type: 3}
 --- !u!54 &2223779253003422032
 Rigidbody:
   m_ObjectHideFlags: 0
