@@ -13,6 +13,7 @@ public class LauncherController : MonoBehaviour
     [SerializeField] private float _firingCooldown;
     [SerializeField] private int _maxAmmo;
     [SerializeField] private int _currentAmmo;
+    [SerializeField] private float _reloadTime;
     [Header("UX Settings")]
     [SerializeField] private AudioClip _firingSound;
     [SerializeField] private AudioClip _reloadSound;
@@ -27,31 +28,38 @@ public class LauncherController : MonoBehaviour
 
     private void Start()
     {
-        RenderBullet();
+        _currentAmmo = _maxAmmo;
+        RenderAmmo();
     }
 
     private void OnFire(InputValue value)
     {
         if (_canFire)
         {
-            GameObject instantiate = Instantiate(_ammoPrefab, _spawnPoint.position, Quaternion.identity);
-            Rigidbody rb = instantiate.GetComponent<Rigidbody>();
-            rb.AddForce(_spawnPoint.forward * _ammoPower);
-            _canFire = false;
-            Invoke(nameof(ResetFire), _firingCooldown);
-            if (_firingSound != null)
+            if (_currentAmmo > 0)
             {
-                AudioSource.PlayClipAtPoint(_firingSound, Vector3.zero);
-            }
+                GameObject instantiate = Instantiate(_ammoPrefab, _spawnPoint.position, Quaternion.identity);
+                Rigidbody rb = instantiate.GetComponent<Rigidbody>();
+                rb.AddForce(_spawnPoint.forward * _ammoPower);
+                _canFire = false;
+                Invoke(nameof(ResetFire), _firingCooldown);
+                if (_firingSound != null)
+                {
+                    AudioSource.PlayClipAtPoint(_firingSound, Vector3.zero);
+                }
 
-            if (_shootParticle != null)
-            {
-                Instantiate(_shootParticle, _spawnPoint.position, Quaternion.identity);
+                if (_shootParticle != null)
+                {
+                    Instantiate(_shootParticle, _spawnPoint.position, Quaternion.identity);
+                }
+
+                _currentAmmo--;
+                RenderAmmo();
             }
         }
     }
     
-    private void RenderBullet()
+    private void RenderAmmo()
     {
         while (_ammoImages.Count < _maxAmmo)
         {
