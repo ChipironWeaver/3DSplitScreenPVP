@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -11,6 +12,7 @@ public class LauncherController : MonoBehaviour
     [SerializeField] private Transform _spawnPoint;
     [SerializeField] private float _firingCooldown;
     [SerializeField] private int _maxAmmo;
+    [SerializeField] private float _reloadCooldown;
     [Header("UX Settings")]
     [SerializeField] private AudioClip _firingSound;
     [SerializeField] private AudioClip _reloadSound;
@@ -19,8 +21,10 @@ public class LauncherController : MonoBehaviour
     [SerializeField] private Sprite _emptySprite;
     [SerializeField] private Sprite _fullSprite;
     [SerializeField] private GameObject _ammoUIGroup;
+    [SerializeField] private Slider _ammoUISlider;
     
     private bool _canFire = true;
+    private bool _reloading = false;
     private List<Image> _ammoUIImages = new List<Image>();
     private int _currentAmmo;
 
@@ -55,6 +59,10 @@ public class LauncherController : MonoBehaviour
                 _currentAmmo--;
                 RenderAmmo();
             }
+            else
+            {
+                StartCoroutine(Reload());
+            }
         }
         
     }
@@ -85,5 +93,30 @@ public class LauncherController : MonoBehaviour
         AmmoInstance.AddComponent<RectTransform>().localScale = Vector3.one;
         return AmmoInstance.AddComponent<Image>();
     }
-    
+
+    private void OnReload()
+    {
+        if (!_reloading)
+        {
+            StartCoroutine(Reload());
+        }
+    }
+
+    private IEnumerator Reload()
+    {
+        _canFire = false;
+        float time = 0;
+        print("boop");
+        while (time < _reloadCooldown)
+        {
+            //edit slider value
+            time += 0.1f;
+            yield return new WaitForSeconds(0.1f);
+            print(time);
+        }
+        print("bam");
+        _currentAmmo = _maxAmmo;
+        RenderAmmo();
+        _canFire = true;
+    }
 }
