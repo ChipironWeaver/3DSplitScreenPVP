@@ -87,11 +87,11 @@ public class LauncherController : MonoBehaviour
 
     private Image InstantiateAmmoUI()
     {
-        GameObject AmmoInstance = new GameObject();
-        AmmoInstance.transform.SetParent(_ammoUIGroup.transform);
-        AmmoInstance.name = "Ammo" + (_ammoUIImages.Count + 1) ;
-        AmmoInstance.AddComponent<RectTransform>().localScale = Vector3.one;
-        return AmmoInstance.AddComponent<Image>();
+        GameObject ammoInstance = new GameObject();
+        ammoInstance.transform.SetParent(_ammoUIGroup.transform);
+        ammoInstance.name = "Ammo" + (_ammoUIImages.Count + 1) ;
+        ammoInstance.AddComponent<RectTransform>().localScale = Vector3.one;
+        return ammoInstance.AddComponent<Image>();
     }
 
     private void OnReload()
@@ -106,15 +106,17 @@ public class LauncherController : MonoBehaviour
     {
         _canFire = false;
         float time = 0;
-        print("boop");
         while (time < _reloadCooldown)
         {
             //edit slider value
             time += 0.1f;
+            if (_currentAmmo < (int)(_maxAmmo * (time / _reloadCooldown)))
+            {
+                _currentAmmo = (int)(_maxAmmo * (time / _reloadCooldown));
+                RenderAmmo();
+            }
             yield return new WaitForSeconds(0.1f);
-            print(time);
         }
-        print("bam");
         _currentAmmo = _maxAmmo;
         RenderAmmo();
         _canFire = true;
