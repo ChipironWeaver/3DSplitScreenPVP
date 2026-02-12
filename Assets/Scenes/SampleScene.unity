@@ -685,8 +685,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0.060058594, y: -0.09436035}
-  m_SizeDelta: {x: -0.12, y: -0.18875}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &408644008
 MonoBehaviour:
@@ -853,6 +853,75 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!1 &434584048
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 434584049}
+  - component: {fileID: 434584052}
+  - component: {fileID: 434584050}
+  m_Layer: 5
+  m_Name: 'Player 2 Bullet Bar '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &434584049
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 434584048}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2065960740}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.525, y: 0.035}
+  m_AnchorMax: {x: 1, y: 0.125}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &434584050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 434584048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GridLayoutGroup
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 6
+  m_StartCorner: 2
+  m_StartAxis: 0
+  m_CellSize: {x: 30, y: 30}
+  m_Spacing: {x: 5, y: 0}
+  m_Constraint: 0
+  m_ConstraintCount: 2
+--- !u!222 &434584052
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 434584048}
+  m_CullTransparentMesh: 1
 --- !u!1 &592436312
 GameObject:
   m_ObjectHideFlags: 0
@@ -2229,7 +2298,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0.0000076293945}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &780134906
 MonoBehaviour:
@@ -4698,6 +4767,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1596306066317849201, guid: d6e0dc6ad20c26e4fb86aec1f88c996b, type: 3}
+      propertyPath: _fullSprite
+      value: 
+      objectReference: {fileID: -383595700, guid: a0abd3b5dba304e49ab3aeeb1df606dd, type: 3}
+    - target: {fileID: 1596306066317849201, guid: d6e0dc6ad20c26e4fb86aec1f88c996b, type: 3}
+      propertyPath: _ammoUIGroup
+      value: 
+      objectReference: {fileID: 434584048}
+    - target: {fileID: 1596306066317849201, guid: d6e0dc6ad20c26e4fb86aec1f88c996b, type: 3}
+      propertyPath: _emptySprite
+      value: 
+      objectReference: {fileID: -563052314, guid: a0abd3b5dba304e49ab3aeeb1df606dd, type: 3}
     - target: {fileID: 3097203236826996637, guid: d6e0dc6ad20c26e4fb86aec1f88c996b, type: 3}
       propertyPath: _group
       value: 
@@ -4710,14 +4791,6 @@ PrefabInstance:
       propertyPath: respawnPoint
       value: 
       objectReference: {fileID: 838073447}
-    - target: {fileID: 4387439467326549196, guid: d6e0dc6ad20c26e4fb86aec1f88c996b, type: 3}
-      propertyPath: m_DefaultActionMap
-      value: df70fa95-8a34-4494-b137-73ab6b9c7d37
-      objectReference: {fileID: 0}
-    - target: {fileID: 4387439467326549196, guid: d6e0dc6ad20c26e4fb86aec1f88c996b, type: 3}
-      propertyPath: m_DefaultControlScheme
-      value: Gamepad
-      objectReference: {fileID: 0}
     - target: {fileID: 4980025419570383300, guid: d6e0dc6ad20c26e4fb86aec1f88c996b, type: 3}
       propertyPath: m_Name
       value: Player2
@@ -6520,8 +6593,10 @@ RectTransform:
   m_Children:
   - {fileID: 408644007}
   - {fileID: 1746197164}
+  - {fileID: 2084555994}
   - {fileID: 780134905}
   - {fileID: 1764419711}
+  - {fileID: 434584049}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -6529,6 +6604,75 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &2084555993
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2084555994}
+  - component: {fileID: 2084555996}
+  - component: {fileID: 2084555997}
+  m_Layer: 5
+  m_Name: Player 1 Bullet Bar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2084555994
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2084555993}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2065960740}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0.035}
+  m_AnchorMax: {x: 0.475, y: 0.125}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &2084555996
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2084555993}
+  m_CullTransparentMesh: 1
+--- !u!114 &2084555997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2084555993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GridLayoutGroup
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 30, y: 30}
+  m_Spacing: {x: 5, y: 0}
+  m_Constraint: 0
+  m_ConstraintCount: 2
 --- !u!1 &2100158908
 GameObject:
   m_ObjectHideFlags: 0
@@ -6647,6 +6791,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1596306066317849201, guid: d6e0dc6ad20c26e4fb86aec1f88c996b, type: 3}
+      propertyPath: _fullSprite
+      value: 
+      objectReference: {fileID: 1387165309, guid: a0abd3b5dba304e49ab3aeeb1df606dd, type: 3}
+    - target: {fileID: 1596306066317849201, guid: d6e0dc6ad20c26e4fb86aec1f88c996b, type: 3}
+      propertyPath: _ammoUIGroup
+      value: 
+      objectReference: {fileID: 2084555993}
+    - target: {fileID: 1596306066317849201, guid: d6e0dc6ad20c26e4fb86aec1f88c996b, type: 3}
+      propertyPath: _emptySprite
+      value: 
+      objectReference: {fileID: -58972831, guid: a0abd3b5dba304e49ab3aeeb1df606dd, type: 3}
     - target: {fileID: 3097203236826996637, guid: d6e0dc6ad20c26e4fb86aec1f88c996b, type: 3}
       propertyPath: _group
       value: 
@@ -6659,14 +6815,6 @@ PrefabInstance:
       propertyPath: respawnPoint
       value: 
       objectReference: {fileID: 1686704658}
-    - target: {fileID: 4387439467326549196, guid: d6e0dc6ad20c26e4fb86aec1f88c996b, type: 3}
-      propertyPath: m_DefaultActionMap
-      value: Player2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4387439467326549196, guid: d6e0dc6ad20c26e4fb86aec1f88c996b, type: 3}
-      propertyPath: m_DefaultControlScheme
-      value: Gamepad
-      objectReference: {fileID: 0}
     - target: {fileID: 4980025419570383300, guid: d6e0dc6ad20c26e4fb86aec1f88c996b, type: 3}
       propertyPath: m_Name
       value: Player1

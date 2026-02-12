@@ -254,7 +254,7 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Gamepad
-  m_DefaultActionMap: Player2
+  m_DefaultActionMap: Player1
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!136 &3707087462863350999
@@ -372,9 +372,13 @@ MonoBehaviour:
   _ammoPrefab: {fileID: 3089808505691805788, guid: 78a062d2db3a9c946976680a7669cb67, type: 3}
   _spawnPoint: {fileID: 3278828340010938973}
   _firingCooldown: 0.1
+  _maxAmmo: 5
   _firingSound: {fileID: 8300000, guid: 59b5a20fe231a8342aa6bbedc832b37b, type: 3}
   _reloadSound: {fileID: 0}
   _shootParticle: {fileID: 8791802859087666345, guid: ae07f2a45f14a82428409cfe410e6002, type: 3}
+  _emptySprite: {fileID: 0}
+  _fullSprite: {fileID: 0}
+  _ammoUIGroup: {fileID: 0}
 --- !u!54 &2223779253003422032
 Rigidbody:
   m_ObjectHideFlags: 0
