@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1140248593805242175}
   - component: {fileID: 6306045747815156022}
   - component: {fileID: 4215541953755875405}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 3097203236826996637}
   - component: {fileID: 1596306066317849201}
   - component: {fileID: 2223779253003422032}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -254,7 +254,7 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Gamepad
-  m_DefaultActionMap: Player2
+  m_DefaultActionMap: Player1
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!136 &3707087462863350999
@@ -339,7 +339,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TargetController
   _currentHealth: 5
   _maxHealth: 5
-  _invicibilityTime: 0.4
+  _invicibilityTime: 0.25
   _invicible: 0
   _heartSprite: {fileID: 0}
   _group: {fileID: 0}
@@ -371,15 +371,16 @@ MonoBehaviour:
   _ammoPower: 2000
   _ammoPrefab: {fileID: 3089808505691805788, guid: 78a062d2db3a9c946976680a7669cb67, type: 3}
   _spawnPoint: {fileID: 3278828340010938973}
-  _firingCooldown: 0.2
-  _maxAmmo: 7
-  _currentAmmo: 5
+  _firingCooldown: 0.1
+  _maxAmmo: 5
+  _reloadCooldown: 2
   _firingSound: {fileID: 8300000, guid: 59b5a20fe231a8342aa6bbedc832b37b, type: 3}
   _reloadSound: {fileID: 0}
   _shootParticle: {fileID: 8791802859087666345, guid: ae07f2a45f14a82428409cfe410e6002, type: 3}
-  _ui: {fileID: 0}
-  fullAmmoSprite: {fileID: 0}
-  emptyAmmoSprite: {fileID: 0}
+  _emptySprite: {fileID: 0}
+  _fullSprite: {fileID: 0}
+  _ammoUIGroup: {fileID: 0}
+  _ammoUISlider: {fileID: 0}
 --- !u!54 &2223779253003422032
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -416,7 +417,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3278828340010938973}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Bullet Exit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -449,7 +450,7 @@ GameObject:
   - component: {fileID: 3848167269590117183}
   - component: {fileID: 6652839824111691244}
   - component: {fileID: 5884915237964210147}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}

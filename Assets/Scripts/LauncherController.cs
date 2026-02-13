@@ -1,30 +1,33 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System.Collections.Generic;
-using Image = UnityEngine.UI.Image;
+using UnityEngine.UI;
 
 public class LauncherController : MonoBehaviour
 {
-    [Header("Gun Settings")]
     [SerializeField] private float _ammoPower;
     [SerializeField] private GameObject _ammoPrefab;
     [SerializeField] private Transform _spawnPoint;
     [SerializeField] private float _firingCooldown;
     [SerializeField] private int _maxAmmo;
-    [SerializeField] private int _currentAmmo;
-    [SerializeField] private float _reloadTime;
+    [SerializeField] private float _reloadCooldown;
     [Header("UX Settings")]
     [SerializeField] private AudioClip _firingSound;
     [SerializeField] private AudioClip _reloadSound;
     [SerializeField] private GameObject _shootParticle;
     [Header("UI Settings")]
-    [SerializeField] private GameObject _ui;
-    [SerializeField] private Sprite fullAmmoSprite;
-    [SerializeField] private Sprite emptyAmmoSprite;
+    [SerializeField] private Sprite _emptySprite;
+    [SerializeField] private Sprite _fullSprite;
+    [SerializeField] private GameObject _ammoUIGroup;
+    [SerializeField] private Slider _ammoUISlider;
     
     private bool _canFire = true;
-    private List<Image> _ammoImages = new List<Image>();
+    private bool _reloading = false;
+    private List<Image> _ammoUIImages = new List<Image>();
+    private int _currentAmmo;
+
 
     private void Start()
     {
@@ -56,34 +59,66 @@ public class LauncherController : MonoBehaviour
                 _currentAmmo--;
                 RenderAmmo();
             }
+            else
+            {
+                StartCoroutine(Reload());
+            }
         }
-    }
-    
-    private void RenderAmmo()
-    {
-        while (_ammoImages.Count < _maxAmmo)
-        {
-            _ammoImages.Add(InstantiateBulletRender());
-        }
-
-        for (int i = 0; i < _ammoImages.Count; i++)
-        {
-            if (i > _currentAmmo - 1) _ammoImages[i].sprite = emptyAmmoSprite;
-            else _ammoImages[i].sprite = fullAmmoSprite;
-        }
+        
     }
 
-    private Image InstantiateBulletRender()
-    {
-        GameObject AmmoTemp = new GameObject();
-        AmmoTemp.transform.SetParent(_ui.transform);
-        AmmoTemp.name = "bullet" + (_ammoImages.Count + 1) ;
-        AmmoTemp.AddComponent<RectTransform>().localScale = Vector3.one;
-        return AmmoTemp.AddComponent<Image>();
-    }
-    
     private void ResetFire()
     {
+        _canFire = true;
+    }
+
+    private void RenderAmmo()
+    {
+        while (_ammoUIImages.Count < _maxAmmo)
+        {
+            _ammoUIImages.Add(InstantiateAmmoUI());
+        }
+        for (int i = 0; i < _ammoUIImages.Count; i++)
+        {
+            if (i > _currentAmmo - 1) _ammoUIImages[i].sprite = _emptySprite;
+            else _ammoUIImages[i].sprite = _fullSprite;
+        }
+    }
+
+    private Image InstantiateAmmoUI()
+    {
+        GameObject ammoInstance = new GameObject();
+        ammoInstance.transform.SetParent(_ammoUIGroup.transform);
+        ammoInstance.name = "Ammo" + (_ammoUIImages.Count + 1) ;
+        ammoInstance.AddComponent<RectTransform>().localScale = Vector3.one;
+        return ammoInstance.AddComponent<Image>();
+    }
+
+    private void OnReload()
+    {
+        if (!_reloading)
+        {
+            StartCoroutine(Reload());
+        }
+    }
+
+    private IEnumerator Reload()
+    {
+        _canFire = false;
+        float time = 0;
+        while (time < _reloadCooldown)
+        {
+            //edit slider value
+            time += 0.1f;
+            if (_currentAmmo < (int)(_maxAmmo * (time / _reloadCooldown)))
+            {
+                _currentAmmo = (int)(_maxAmmo * (time / _reloadCooldown));
+                RenderAmmo();
+            }
+            yield return new WaitForSeconds(0.1f);
+        }
+        _currentAmmo = _maxAmmo;
+        RenderAmmo();
         _canFire = true;
     }
 }
